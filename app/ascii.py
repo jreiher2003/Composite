@@ -16,13 +16,13 @@ def get_coords(ip):
     content = urllib2.urlopen(url).read()
     if content:
         result = json.loads(content)
-        lon = float(result["lon"])
         lat = float(result["lat"])
-    return lat,lon
+        lon = float(result["lon"])
+        return (lat,lon)
 
 
-GMAPS_URL = "http://maps.googleapis.com/maps/api/staticmap?size=550x400&zoom=3&sensor=false"
 def gmaps_img(points):
+    GMAPS_URL = "http://maps.googleapis.com/maps/api/staticmap?size=550x400&zoom=3&sensor=false"
     url = ""
     for lat, lon in points:
         url = GMAPS_URL + '&markers=%s,%s' % (lat, lon)
@@ -43,6 +43,7 @@ def hello():
     if form.validate_on_submit():
         one = AsciiArt(title=form.title.data, art=form.art.data)
         lat = get_coords(request.remote_addr)[0]
+        print lat
         lon = get_coords(request.remote_addr)[1]
         if lat and lon:
             one.lat = lat
