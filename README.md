@@ -1,20 +1,21 @@
-# Composite  #### his website is a site i made for my portfolio
+# Composite 
 ___
 
 
-### tech stack - 
+### Tech Stack 
 * python 
 * flask 
 * sqlalchemy
 * postgres 
 * bootsrap 
 * heroku
-___
+
 
 ### This site emphasizes CRUD functionality, AJAX requests, and using API's
+_______
 
 #### Page 1 Home or "/"
-**Front page or / ** has a submission form to collect title and ascii art. The app also collects IP addresses and converts them to geoPts of lat, lon which is represented on the map with a marker when you make a post.
+**Front page** has a submission form to collect title and ascii art. The app also collects IP addresses and converts them to geoPts of lat, lon which is represented on the map with a marker when you make a post.
 **Crud functionality** - this app can create read update and delete
 
 #### Page 2 /ajax
