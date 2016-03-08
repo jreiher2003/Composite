@@ -7,13 +7,13 @@ class BaseConfig(object):
 	SECRET_KEY = os.environ["SECRET_KEY"]
 
 class TestConfig(BaseConfig):
-    DEBUG = True
-    TESTING = True
-    WTF_CSRF_ENABLED = False
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+	DEBUG = True
+	TESTING = True
+	WTF_CSRF_ENABLED = False
+	SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
 
 class DevelopmentConfig(BaseConfig):
-    DEBUG = True
-    
+	DEBUG = True
+	
 class ProductionConfig(BaseConfig):
-    DEBUG = False
+	DEBUG = False
