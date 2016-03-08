@@ -22,6 +22,7 @@ class BaseTestCase(TestCase):
         one.lon = 55.555
         db.session.add(one)
         db.session.commit()
+        
 
     def tearDown(self):
         db.session.remove()

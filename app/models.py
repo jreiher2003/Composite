@@ -1,5 +1,5 @@
-import datetime
-from app import db
+import datetime # pragma: no cover
+from app import db # pragma: no cover
 
 
 class AsciiArt(db.Model):

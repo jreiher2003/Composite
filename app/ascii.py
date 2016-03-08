@@ -1,11 +1,11 @@
-import datetime
-import urllib2
-import requests
-import json
-from app import app, db
-from app.models import AsciiArt
-from app.forms import AsciiForm
-from flask import render_template, request, url_for, redirect, flash
+import datetime # pragma: no cover
+import urllib2 # pragma: no cover
+import requests # pragma: no cover
+import json # pragma: no cover
+from app import app, db # pragma: no cover
+from app.models import AsciiArt # pragma: no cover
+from app.forms import AsciiForm # pragma: no cover
+from flask import render_template, request, url_for, redirect, flash # pragma: no cover
 
 
 IP_URL = "http://ip-api.com/json/"
