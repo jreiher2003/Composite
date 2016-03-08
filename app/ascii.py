@@ -23,6 +23,7 @@ def get_coords(ip):
 
 GMAPS_URL = "http://maps.googleapis.com/maps/api/staticmap?size=550x400&zoom=3&sensor=false"
 def gmaps_img(points):
+    url = ""
     for lat, lon in points:
         url = GMAPS_URL + '&markers=%s,%s' % (lat, lon)
     return url
