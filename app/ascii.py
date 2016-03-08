@@ -8,17 +8,20 @@ from app.forms import AsciiForm # pragma: no cover
 from flask import render_template, request, url_for, redirect, flash # pragma: no cover
 
 
-IP_URL = "http://ip-api.com/json/"
-def get_coords(ip):
+def get_coords():
     ip = ""
-    url = IP_URL + ip
+    ip = request.remote_addr
+    print ip
+    ip_url = "http://ip-api.com/json/"
+    url = ip_url + ip
+    print url
     content = None
     content = urllib2.urlopen(url).read()
     if content:
         result = json.loads(content)
         lon = float(result["lon"])
         lat = float(result["lat"])
-        return lat,lon
+    return lat,lon
 
 
 GMAPS_URL = "http://maps.googleapis.com/maps/api/staticmap?size=550x400&zoom=3&sensor=false"
