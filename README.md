@@ -7,7 +7,7 @@ ___
 * flask 
 * sqlalchemy
 * postgres 
-* bootsrap 
+* bootstrap 
 * heroku
 
 
