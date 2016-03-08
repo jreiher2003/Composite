@@ -22,7 +22,7 @@ function loadData() {
 
     $body.append("<img class='thumbnail center-block' src='"+ streetviewUrl + "'>");
 
-    var API = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q="
+    var API = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q="
     var KEY = "&sort=newest&api-key=53ac231dce440f01b73fcdda60cccc59:4:70248560"
     var URL = API + cityStr + KEY
     $.getJSON(URL, function( data ) {
