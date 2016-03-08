@@ -8,13 +8,10 @@ from app.forms import AsciiForm # pragma: no cover
 from flask import render_template, request, url_for, redirect, flash # pragma: no cover
 
 
-def get_coords():
+IP_URL = "http://ip-api.com/json/"
+def get_coords(ip):
     ip = ""
-    ip = request.remote_addr
-    print ip
-    ip_url = "http://ip-api.com/json/"
-    url = ip_url + ip
-    print url
+    url = IP_URL + ip
     content = None
     content = urllib2.urlopen(url).read()
     if content:
