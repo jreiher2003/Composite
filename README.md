@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/jreiher2003/Composite.svg?branch=master)](https://travis-ci.org/jreiher2003/Composite)
 # Composite 
 ___
 
