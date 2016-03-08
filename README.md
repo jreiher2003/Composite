@@ -15,7 +15,7 @@ ___
 ### This site emphasizes CRUD functionality, AJAX requests, and using API's
 _______
 
-#### Page 1 Home or "/"
+#### Page 1 Home or /
 **Front page** has a submission form to collect title and ascii art. The app also collects IP addresses and converts them to geoPts of lat, lon which is represented on the map with a marker when you make a post.
 **Crud functionality** - this app can create read update and delete
 
