@@ -31,7 +31,9 @@ def gmaps_img(points):
 @app.route("/", methods=["GET","POST"])
 def hello():
     headers_list = request.headers.getlist("X-Forwarded-For")
+    print headers_list
     user_ip = headers_list[0] if headers_list else request.remote_addr
+    print user_ip
     error = None
     all_art = AsciiArt.query.order_by(AsciiArt.id.desc()).all()
     form = AsciiForm()
@@ -44,7 +46,6 @@ def hello():
     if form.validate_on_submit():
         one = AsciiArt(title=form.title.data, art=form.art.data)
         lat = get_coords(user_ip)[0]
-        print lat
         lon = get_coords(user_ip)[1]
         if lat and lon:
             one.lat = lat
