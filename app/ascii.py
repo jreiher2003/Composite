@@ -46,7 +46,9 @@ def hello():
     if form.validate_on_submit():
         one = AsciiArt(title=form.title.data, art=form.art.data)
         lat = get_coords(user_ip)[0]
+        print lat
         lon = get_coords(user_ip)[1]
+        print lon
         if lat and lon:
             one.lat = lat
             one.lon = lon
