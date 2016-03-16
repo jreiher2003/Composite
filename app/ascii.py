@@ -10,7 +10,7 @@ from flask import render_template, request, url_for, redirect, flash # pragma: n
 
 
 IP_URL = "http://ip-api.com/json/"
-def get_coords(ip):
+def get_coords():
     ip = ""
     headers_list = request.headers.getlist("X-Forwarded-For")
     print headers_list
@@ -47,10 +47,10 @@ def hello():
     img_url = gmaps_img(gps)
     if form.validate_on_submit():
         one = AsciiArt(title=form.title.data, art=form.art.data)
-        lat = get_coords(ip)[0]
+        lat = get_coords()[0]
         print lat
         app.logger.warning("This is user latitude %s" % lat)
-        lon = get_coords(ip)[1]
+        lon = get_coords()[1]
         print lon
         app.logger.warning("This is user longitude %s" % lon)
         if lat and lon:
