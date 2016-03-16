@@ -14,7 +14,7 @@ def get_coords():
     ip = ""
     headers_list = request.headers.getlist("X-Forwarded-For")
     print headers_list
-    ip = headers_list[0] if headers_list else request.remote_addr
+    ip = str(headers_list[0] if headers_list else request.remote_addr)
     print ip
     url = IP_URL + ip
     print url 
