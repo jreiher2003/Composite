@@ -13,6 +13,7 @@ IP_URL = "http://ip-api.com/json/"
 def get_coords(ip):
     ip = ""
     url = IP_URL + ip
+    print url 
     content = None
     content = urllib2.urlopen(url).read()
     if content:
