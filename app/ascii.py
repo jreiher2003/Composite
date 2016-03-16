@@ -10,14 +10,9 @@ from flask import render_template, request, url_for, redirect, flash # pragma: n
 
 
 IP_URL = "http://ip-api.com/json/"
-def get_coords():
+def get_coords(ip):
     ip = ""
-    headers_list = request.headers.getlist("X-Forwarded-For")
-    print headers_list
-    ip = str(headers_list[0] if headers_list else request.remote_addr)
-    print ip
     url = IP_URL + ip
-    print url 
     content = None
     content = urllib2.urlopen(url).read()
     if content:
@@ -36,6 +31,12 @@ def gmaps_img(points):
 
 @app.route("/", methods=["GET","POST"])
 def hello():
+    headers_list = request.headers.getlist("X-Forwarded-For")
+    print headers_list
+    app.logger.warning("This is the headers list %s" % headers_list)
+    user_ip = headers_list[0] if headers_list else request.remote_addr
+    app.logger.warning("This is the user_id address %s" % user_ip)
+    print user_ip
     error = None
     all_art = AsciiArt.query.order_by(AsciiArt.id.desc()).all()
     form = AsciiForm()
@@ -47,10 +48,10 @@ def hello():
     img_url = gmaps_img(gps)
     if form.validate_on_submit():
         one = AsciiArt(title=form.title.data, art=form.art.data)
-        lat = get_coords()[0]
+        lat = get_coords(user_ip)[0]
         print lat
         app.logger.warning("This is user latitude %s" % lat)
-        lon = get_coords()[1]
+        lon = get_coords(user_ip)[1]
         print lon
         app.logger.warning("This is user longitude %s" % lon)
         if lat and lon:
