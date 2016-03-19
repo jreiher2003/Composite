@@ -62,7 +62,7 @@ def hello():
     error = None
     all_art = top_arts()
     form = AsciiForm()
-    all_art = list(all_art)
+    # all_art = list(all_art)
     lat = [a.lat for a in all_art]
     lon = [b.lon for b in all_art]
     gps = zip(lat,lon)
