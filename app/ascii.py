@@ -118,8 +118,8 @@ def edit_art(art_id):
 
 @app.route("/<int:art_id>/delete", methods=["GET","POST"])
 def delete_art(art_id):
-    # delete_artwork = AsciiArt.query.filter_by(id=art_id).one()
-    delete_artwork = top_arts()
+    delete_artwork = AsciiArt.query.filter_by(id=art_id).one()
+    
     form = AsciiForm()
     if request.method == "POST":
         db.session.delete(delete_artwork)
