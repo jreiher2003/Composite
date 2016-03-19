@@ -16,17 +16,25 @@ def get_ip():
 IP_URL = "http://ip-api.com/json/"
 def get_coords(ip):
     ip = get_ip()
-    url = IP_URL + ip
+    try:
+        url = IP_URL + ip
+    except TypeError:
+        url = IP_URL + "73.55.103.114"
     content = None
     try:
         content = urllib2.urlopen(url).read()
     except URLError:
         return
     if content:
-        result = json.loads(content)
-        lat = float(result["lat"])
-        lon = float(result["lon"])
-        return (lat,lon)
+        try:
+            result = json.loads(content)
+            lat = float(result["lat"])
+            lon = float(result["lon"])
+            return (lat,lon)
+        except KeyError:
+            lat = "50.00"
+            lon = "50.00"
+            return (lat,lon)
     else:
         return None
 
