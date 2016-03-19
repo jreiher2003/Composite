@@ -15,17 +15,13 @@ def get_ip():
 
 IP_URL = "http://ip-api.com/json/"
 def get_coords(ip):
-    print get_ip()
     ip = get_ip()
-    print ip
     url = IP_URL + ip
-    print url
     content = None
     try:
         content = urllib2.urlopen(url).read()
     except URLError:
         return
-
     if content:
         result = json.loads(content)
         lat = float(result["lat"])
@@ -56,8 +52,6 @@ def top_arts(update = False):
 
 @app.route("/", methods=["GET","POST"])
 def hello():
-    # headers_list = request.headers.getlist("X-Forwarded-For")
-    # user_ip = headers_list[0] if headers_list else request.remote_addr
     all_art = AsciiArt.query.order_by(AsciiArt.id.desc()).all()
     all_art = list(all_art)
     form = AsciiForm()
@@ -77,7 +71,6 @@ def hello():
             one.lon = lon
         db.session.add(one)
         db.session.commit()
-        # top_arts(True)
         flash("You just posted some <strong>ascii</strong> artwork!", "success")
         return redirect(url_for("hello"))
     return render_template("front.html", 
@@ -89,7 +82,6 @@ def hello():
 
 @app.route("/<int:art_id>/edit", methods=["GET","POST"])
 def edit_art(art_id):
-    # all_art = top_arts()
     all_art = AsciiArt.query.order_by(AsciiArt.id.desc()).all()
     all_art = list(all_art)
     lat = [a.lat for a in all_art]
@@ -105,7 +97,6 @@ def edit_art(art_id):
         edit_art.art = form.art.data
         db.session.add(edit_art)
         db.session.commit()
-        # top_arts(True)
         flash("Successful Edit of <strong>%s</strong>" % edit_art.title, "info")
         return redirect(url_for("hello"))
     return render_template("edit.html", 
@@ -123,7 +114,6 @@ def delete_art(art_id):
     if request.method == "POST":
         db.session.delete(delete_artwork)
         db.session.commit()
-        # top_arts(True)
         flash("Just deleted <u>%s</u>" % delete_artwork.title, "danger")
         return redirect(url_for("hello"))
     return render_template("delete.html", 
