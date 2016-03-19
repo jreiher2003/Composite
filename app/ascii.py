@@ -8,18 +8,31 @@ from app.models import AsciiArt # pragma: no cover
 from app.forms import AsciiForm # pragma: no cover
 from flask import render_template, request, url_for, redirect, flash # pragma: no cover
 
+def get_ip():
+    headers_list = request.headers.getlist("X-Forwarded-For")
+    user_ip = headers_list[0] if headers_list else request.remote_addr
+    return user_ip
 
 IP_URL = "http://ip-api.com/json/"
 def get_coords(ip):
-    ip = ""
+    print get_ip()
+    ip = "73.55.103.114"
+    print ip
     url = IP_URL + ip
+    print url
     content = None
-    content = urllib2.urlopen(url).read()
+    try:
+        content = urllib2.urlopen(url).read()
+    except URLError:
+        return
+
     if content:
         result = json.loads(content)
         lat = float(result["lat"])
         lon = float(result["lon"])
         return (lat,lon)
+    else:
+        return None
 
 
 def gmaps_img(points):
@@ -43,8 +56,9 @@ def top_arts(update = False):
 
 @app.route("/", methods=["GET","POST"])
 def hello():
-    headers_list = request.headers.getlist("X-Forwarded-For")
-    user_ip = headers_list[0] if headers_list else request.remote_addr
+    # headers_list = request.headers.getlist("X-Forwarded-For")
+    # user_ip = headers_list[0] if headers_list else request.remote_addr
+    ip = "73.55.103.114"
     error = None
     all_art = top_arts()
     form = AsciiForm()
@@ -56,8 +70,8 @@ def hello():
     img_url = gmaps_img(gps)
     if form.validate_on_submit():
         one = AsciiArt(title=form.title.data, art=form.art.data)
-        lat = get_coords(user_ip)[0]
-        lon = get_coords(user_ip)[1]
+        lat = get_coords(ip)[0]
+        lon = get_coords(ip)[1]
         if lat and lon:
             one.lat = lat
             one.lon = lon
