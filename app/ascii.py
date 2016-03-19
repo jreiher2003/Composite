@@ -16,7 +16,7 @@ def get_ip():
 IP_URL = "http://ip-api.com/json/"
 def get_coords(ip):
     print get_ip()
-    ip = "73.55.103.114"
+    ip = get_ip()
     print ip
     url = IP_URL + ip
     print url
@@ -58,7 +58,7 @@ def top_arts(update = False):
 def hello():
     # headers_list = request.headers.getlist("X-Forwarded-For")
     # user_ip = headers_list[0] if headers_list else request.remote_addr
-    ip = "73.55.103.114"
+    ip = get_ip()
     error = None
     all_art = top_arts()
     form = AsciiForm()
