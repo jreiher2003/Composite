@@ -5,6 +5,7 @@ class BaseConfig(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     SQLALCHEMY_DATABASE_URI = os.environ["DATABASE_URL"]
     SECRET_KEY = os.environ["SECRET_KEY"]
+    CACHE_TYPE = "simple"
 
 class TestConfig(BaseConfig):
     DEBUG = True
@@ -15,6 +16,7 @@ class TestConfig(BaseConfig):
 
 class DevelopmentConfig(BaseConfig):
     DEBUG = True
+
     
 class ProductionConfig(BaseConfig):
     DEBUG = False

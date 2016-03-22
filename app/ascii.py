@@ -3,7 +3,7 @@ import urllib2 # pragma: no cover
 import requests # pragma: no cover
 import json # pragma: no cover
 import logging
-from app import app, db # pragma: no cover
+from app import app, db, cache # pragma: no cover
 from app.models import AsciiArt # pragma: no cover
 from app.forms import AsciiForm # pragma: no cover
 from flask import render_template, request, url_for, redirect, flash # pragma: no cover
@@ -45,23 +45,23 @@ def gmaps_img(points):
         GMAPS_URL += '&markers=%s,%s' % (lat, lon)
     return GMAPS_URL
 
-CACHE = {}
+
 def top_arts(update = False):
     key = "top"
-    if not update and key in CACHE:
-        all_art = CACHE[key]
-    else:
+    all_art = cache.get(key)
+    if all_art is None or update:
         logging.error("DB QUERY")
         all_art = AsciiArt.query.order_by(AsciiArt.id.desc()).all()
         all_art = list(all_art)
-        CACHE[key] = all_art
+        cache.set(key, all_art)
     return all_art
 
 
 @app.route("/", methods=["GET","POST"])
 def hello():
-    all_art = AsciiArt.query.order_by(AsciiArt.id.desc()).all()
-    all_art = list(all_art)
+    # all_art = AsciiArt.query.order_by(AsciiArt.id.desc()).all()
+    # all_art = list(all_art)
+    all_art = top_arts()
     form = AsciiForm()
     ip = get_ip()
     error = None
@@ -79,6 +79,7 @@ def hello():
             one.lon = lon
         db.session.add(one)
         db.session.commit()
+        top_arts(True)
         flash("You just posted some <strong>ascii</strong> artwork!", "success")
         return redirect(url_for("hello"))
     return render_template("front.html", 
@@ -105,6 +106,7 @@ def edit_art(art_id):
         edit_art.art = form.art.data
         db.session.add(edit_art)
         db.session.commit()
+        top_arts(True)
         flash("Successful Edit of <strong>%s</strong>" % edit_art.title, "info")
         return redirect(url_for("hello"))
     return render_template("edit.html", 
@@ -122,6 +124,7 @@ def delete_art(art_id):
     if request.method == "POST":
         db.session.delete(delete_artwork)
         db.session.commit()
+        top_arts(True)
         flash("Just deleted <u>%s</u>" % delete_artwork.title, "danger")
         return redirect(url_for("hello"))
     return render_template("delete.html", 
