@@ -8,6 +8,7 @@ from app.models import AsciiArt # pragma: no cover
 from app.forms import AsciiForm # pragma: no cover
 from flask import render_template, request, url_for, redirect, flash # pragma: no cover
 
+
 def get_ip():
     headers_list = request.headers.getlist("X-Forwarded-For")
     user_ip = headers_list[0] if headers_list else request.remote_addr
@@ -32,8 +33,8 @@ def get_coords(ip):
             lon = float(result["lon"])
             return (lat,lon)
         except KeyError:
-            lat = "50.00"
-            lon = "50.00"
+            lat = "29.00"
+            lon = "-100.00"
             return (lat,lon)
     else:
         return None
@@ -59,8 +60,6 @@ def top_arts(update = False):
 
 @app.route("/", methods=["GET","POST"])
 def hello():
-    # all_art = AsciiArt.query.order_by(AsciiArt.id.desc()).all()
-    # all_art = list(all_art)
     all_art = top_arts()
     form = AsciiForm()
     ip = get_ip()
@@ -70,6 +69,7 @@ def hello():
     gps = zip(lat,lon)
     img_url = None
     img_url = gmaps_img(gps)
+   
     if form.validate_on_submit():
         one = AsciiArt(title=form.title.data, art=form.art.data)
         lat = get_coords(ip)[0]
@@ -84,7 +84,7 @@ def hello():
         return redirect(url_for("hello"))
     return render_template("front.html", 
         all_art=all_art, 
-        img_url=img_url, 
+        img_url=img_url,
         form=form, 
         error=error)
 
