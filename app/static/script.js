@@ -23,15 +23,19 @@ function loadData() {
     $body.append("<img class='thumbnail center-block' src='"+ streetviewUrl + "'>");
 
     var API = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q="
-    var KEY = "&sort=newest&api-key=53ac231dce440f01b73fcdda60cccc59:4:70248560"
+    var KEY = "&sort=newest&api-key=b2f92fb98088b256316d8584e1aaca61:13:70248560"
     var URL = API + cityStr + KEY
-    $.getJSON(URL, function( data ) {
-        $nytHeaderElem.text("New York Times Articles About " + cityStr + ", " + stateStr);
-        var articles = data.response.docs;
-        for (var i = 0; i < articles.length; i++ ) {
-            var article = articles[i];
-            $nytElem.append("<li class='thumbnail bg-thumb'>" + "<a href='"+ article.web_url +"' target='_blank'>" + article.headline.main +"</a>" + "<p>" + article.snippet + "</p></li>");
-        };
+    $.ajax({
+        url: URL,
+        dataType:"jsonp",
+        success: function( data ) {
+            $nytHeaderElem.text("New York Times Articles About " + cityStr + ", " + stateStr);
+            var articles = data.response.docs;
+            for (var i = 0; i < articles.length; i++ ) {
+                var article = articles[i];
+                $nytElem.append("<li class='thumbnail bg-thumb'>" + "<a href='"+ article.web_url +"' target='_blank'>" + article.headline.main +"</a>" + "<p>" + article.snippet + "</p></li>");
+                };
+            }
     }).error(function(e) {
         $nytElem.text("Ny Times Couldn't be loaded at this time")
     });
