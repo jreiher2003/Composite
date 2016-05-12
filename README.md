@@ -6,6 +6,7 @@ ___
 ### Tech Stack 
 * python 
 * flask 
+* basic cache
 * sqlalchemy
 * postgres 
 * bootstrap 
