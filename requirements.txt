@@ -9,6 +9,7 @@ coverage==4.0.3
 docutils==0.12
 Flask==0.10.1
 Flask-Bcrypt==0.7.1
+Flask-Cache==0.13.1
 Flask-Login==0.3.2
 Flask-Migrate==1.7.0
 Flask-Script==2.0.5
@@ -21,8 +22,8 @@ itsdangerous==0.24
 Jinja2==2.8
 linecache2==1.0.0
 Mako==1.0.3
-MarkupSafe==0.23
 Manager==2.0.5
+MarkupSafe==0.23
 migrate==0.3.8
 Oncilla==0.1.0
 passlib==1.6.5
@@ -41,5 +42,4 @@ SQLAlchemy==1.0.11
 traceback2==1.4.0
 unittest2==1.1.0
 Werkzeug==0.11.3
-wheel==0.26.0
 WTForms==2.1
