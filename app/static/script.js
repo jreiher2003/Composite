@@ -18,7 +18,7 @@ function loadData() {
 
     $greeting.text("Here is some information about " + address + ".");
 
-    var streetviewUrl = "https://maps.googleapis.com/maps/api/streetview?size=400x200&location=" + address + "";
+    var streetviewUrl = "https://maps.googleapis.com/maps/api/streetview?size=400x200&location=" + address + "&key=AIzaSyDOnmHKt4bMXj-QL8pKeHd4yCyTL8-IzUc";
 
     $body.append("<img class='thumbnail center-block' src='"+ streetviewUrl + "'>");
 // https://api.nytimes.com/svc/search/v2/articlesearch.json?q=tampa&sort=newest&api-key=b2f92fb98088b256316d8584e1aaca61:13:70248560
