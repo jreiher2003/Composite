@@ -11,13 +11,16 @@ sudo apt-get -y install python-pip
 sudo apt-get -y install postgresql
 
 sudo pip install virtualenvwrapper  
-
 mkvirtualenv composite
+
 # add these lines to .bashrc 
-# export WORKON_HOME=$HOME/.virtualenvs
-# export PROJECT_HOME=$HOME/Devel
-# source /usr/local/bin/virtualenvwrapper.sh
+echo 'export WORKON_HOME=$HOME/.virtualenvs' >> ~/.bashrc
+echo 'export PROJECT_HOME=$HOME/Devel' >> ~/.bashrc 
+echo 'source /usr/local/bin/virtualenvwrapper.sh' >> ~/.bashrc 
+##############################################
+# put environ envs below
 # sudo nano $VIRTUAL_ENV/bin/postactivate
+# ex. ->-> export APP_SETTINGS="config.DevelopmentConfig"
 cd /vagrant 
 pip install -r requirements.txt 
 
