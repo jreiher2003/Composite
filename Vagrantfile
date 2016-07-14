@@ -5,7 +5,7 @@
 Vagrant.configure(2) do |config|
  
   config.vm.box = "ubuntu/trusty64"
-  config.vm.network "forwarded_port", guest: 80, host: 5100
+  config.vm.network "forwarded_port", guest: 5100, host: 5100
   config.vm.provision :shell, path: "pg_config.sh"
 
 
