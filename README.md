@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.org/jreiher2003/Composite.svg?branch=master)](https://travis-ci.org/jreiher2003/Composite)
 # Composite 
+### This site emphasizes CRUD functionality, AJAX requests, and using API's
+I initially hosted this site on heroku and I still maintain a heroku-production branch.  After learning how to configure a linux web server from scratch I went back and installed this site on a AWS linux box.  
 ___
-
-
+[![Build Status](https://travis-ci.org/jreiher2003/Composite.svg?branch=master)](https://travis-ci.org/jreiher2003/Composite)
 ### Tech Stack 
 * linux ubuntu/trusty64  
 * vagrant  
@@ -13,10 +13,6 @@ ___
 * postgresql 
 * bootstrap 
 * aws  
-
-
-### This site emphasizes CRUD functionality, AJAX requests, and using API's
-I initially hosted this site on heroku and I still maintain a heroku-production branch.  After learning how to configure a linux web server from scratch I went back and installed this site on a AWS linux box.  
 _______
 #### Run code  
 `vagrant up`  
