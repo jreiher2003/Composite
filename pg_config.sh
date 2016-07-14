@@ -6,9 +6,10 @@ sudo apt-get -y install python-dev
 sudo apt-get install -y build-essential 
 sudo apt-get install -y libssl-dev 
 sudo apt-get install -y libffi-dev 
-sudo apt-get -y install libpq-dev  
-sudo apt-get -y install python-pip 
-sudo apt-get -y install postgresql
+sudo apt-get install -y libpq-dev  
+sudo apt-get install -y python-pip 
+sudo apt-get install -y libffi-dev
+sudo apt-get install -y postgresql
 sudo apt-get install memcached
 
 
