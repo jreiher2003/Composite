@@ -2,3 +2,4 @@
 *.db
 *.bat
 coverage/
+venv/
