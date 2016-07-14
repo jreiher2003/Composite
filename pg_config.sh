@@ -18,9 +18,6 @@ echo 'export WORKON_HOME=$HOME/.virtualenvs' >> ~/.bashrc
 echo 'export PROJECT_HOME=$HOME/Devel' >> ~/.bashrc 
 echo 'source /usr/local/bin/virtualenvwrapper.sh' >> ~/.bashrc 
 ##############################################
-# put environ envs below
-# sudo nano $VIRTUAL_ENV/bin/postactivate
-# ex. ->-> export APP_SETTINGS="config.DevelopmentConfig"
 cd /vagrant 
 pip install -r requirements.txt 
 
