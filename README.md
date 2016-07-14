@@ -18,6 +18,20 @@ ___
 ### This site emphasizes CRUD functionality, AJAX requests, and using API's
 I initially hosted this site on heroku and I still maintain a heroku-production branch.  After learning how to configure a linux web server from scratch I went back and installed this site on a AWS linux box.  
 _______
+#### Run code  
+`vagrant up`  
+`vagrant ssh`  
+```
+# put environ envs like this
+# sudo nano $VIRTUAL_ENV/bin/postactivate
+# ex. ->-> export APP_SETTINGS="config.DevelopmentConfig"
+  ex. ->-> export SECRET_KEY="add a secret key"
+  ex. ->-> export DATABASE_URL="postgres://vagrant:vagrant@localhost:5432/ascii"
+```
+`workon composite`  
+`cd /vagrant`  
+`python db_create.py`  
+`python manage.py runserver`  
 
 #### Page 1 Home or /
 **Front page** has a submission form to collect title and ascii art. The app also collects IP addresses and converts them to geoPts of lat, lon which is represented on the map with a marker when you make a post.
