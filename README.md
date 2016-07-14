@@ -3,6 +3,7 @@
 I initially hosted this site on heroku and I still maintain a heroku-production branch.  After learning how to configure a linux web server from scratch I went back and installed this site on a AWS linux box.  
 ___
 [![Build Status](https://travis-ci.org/jreiher2003/Composite.svg?branch=master)](https://travis-ci.org/jreiher2003/Composite)
+_______  
 ### Tech Stack 
 * linux ubuntu/trusty64  
 * vagrant  
@@ -13,12 +14,13 @@ ___
 * postgresql 
 * bootstrap 
 * aws  
-_______
+
 #### Run code  
 `vagrant up`  
 `vagrant ssh`  
+
+#### put environ envs like this
 ```
-# put environ envs like this
 # sudo nano $VIRTUAL_ENV/bin/postactivate
 # ex. ->-> export APP_SETTINGS="config.DevelopmentConfig"
   ex. ->-> export SECRET_KEY="add a secret key"
