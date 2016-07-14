@@ -4,16 +4,19 @@ ___
 
 
 ### Tech Stack 
-* python 
+* linux ubuntu/trusty64  
+* vagrant  
+* python2.7 
 * flask 
-* basic cache
+* memecached  
 * sqlalchemy
-* postgres 
+* postgresql 
 * bootstrap 
-* heroku
+* aws  
 
 
 ### This site emphasizes CRUD functionality, AJAX requests, and using API's
+I initially hosted this site on heroku and I still maintain a heroku-production branch.  After learning how to configure a linux web server from scratch I went back and installed this site on a AWS linux box.  
 _______
 
 #### Page 1 Home or /
