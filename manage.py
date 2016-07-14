@@ -4,8 +4,8 @@ import coverage
 
 from app import app,db
 
-from flask.ext.script import Manager
-from flask.ext.migrate import Migrate, MigrateCommand 
+from flask_script import Manager, Server
+from flask_migrate import Migrate, MigrateCommand 
 import logging
 
 
@@ -13,6 +13,7 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 migrate = Migrate(app, db)
 manager = Manager(app)
 
+manager.add_command('runserver', Server(host="0.0.0.0", port=5100))
 manager.add_command('db', MigrateCommand)
 
 @manager.command
