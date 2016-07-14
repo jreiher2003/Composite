@@ -9,6 +9,8 @@ sudo apt-get install -y libffi-dev
 sudo apt-get -y install libpq-dev  
 sudo apt-get -y install python-pip 
 sudo apt-get -y install postgresql
+sudo apt-get install memcached
+
 
 sudo pip install virtualenvwrapper  
 mkvirtualenv composite
