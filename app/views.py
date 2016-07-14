@@ -89,8 +89,9 @@ def hello():
 
 @app.route("/<int:art_id>/edit", methods=["GET","POST"])
 def edit_art(art_id):
-    all_art = AsciiArt.query.order_by(AsciiArt.id.desc()).all()
-    all_art = list(all_art)
+    # all_art = AsciiArt.query.order_by(AsciiArt.id.desc()).all()
+    # all_art = list(all_art)
+    all_art = top_arts()
     lat = [a.lat for a in all_art]
     lon = [b.lon for b in all_art]
     gps = zip(lat,lon)
@@ -104,7 +105,7 @@ def edit_art(art_id):
         edit_art.art = form.art.data
         db.session.add(edit_art)
         db.session.commit()
-        top_arts(True)
+        cache.clear()
         flash("Successful Edit of <strong>%s</strong>" % edit_art.title, "info")
         return redirect(url_for("hello"))
     return render_template("edit.html", 
@@ -122,7 +123,7 @@ def delete_art(art_id):
     if request.method == "POST":
         db.session.delete(delete_artwork)
         db.session.commit()
-        top_arts(True)
+        cache.clear()
         flash("Just deleted <u>%s</u>" % delete_artwork.title, "danger")
         return redirect(url_for("hello"))
     return render_template("delete.html", 
