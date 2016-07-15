@@ -51,3 +51,13 @@ footer p {
  span.icon-bar {
   background-color: #C83803;
 }
+.showart {
+  border: 1px solid #0B162A;;
+}
+.justart {
+  overflow-y: scroll;
+  min-height: 400px;
+  max-height: 400px;
+  background-color: white;
+
+}
