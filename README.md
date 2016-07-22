@@ -1,6 +1,6 @@
 # Composite 
 ### This site emphasizes CRUD functionality, AJAX requests, and using API's
-I initially hosted this site on heroku and I still maintain a heroku-production branch.  After learning how to configure a linux web server from scratch I went back and installed this site on a AWS linux box.  
+I initially hosted this site on heroku and I still maintain a heroku-production branch.  After learning how to configure a linux web server from scratch I went back and installed this site on an AWS linux box.  
 ___
 [![Build Status](https://travis-ci.org/jreiher2003/Composite.svg?branch=master)](https://travis-ci.org/jreiher2003/Composite)
 _______  
@@ -33,7 +33,7 @@ mkvirtualenv venv
 `python db_create.py`  
 `python manage.py runserver`  
 
-#### Page 1 Home or /
+#### Page 1 Home or /ascii
 **Front page** has a submission form to collect title and ascii art. The app also collects IP addresses and converts them to geoPts of lat, lon which is represented on the map with a marker when you make a post.
 **Crud functionality** - this app can create read update and delete
 
