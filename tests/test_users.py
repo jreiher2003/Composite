@@ -62,7 +62,7 @@ class TestLogin(BaseTestCase):
     def test_register(self):
         # Ensure about route behaves correctly.
         response = self.client.get('/', follow_redirects=True)
-        self.assertIn(b'Sign Up to make a post', response.data)
+        self.assertIn(b'Sign up', response.data)
 
     def test_student_registration(self):
         # Ensure registration behaves correctly.
