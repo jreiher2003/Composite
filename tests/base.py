@@ -1,7 +1,7 @@
 import datetime
 from flask.ext.testing import TestCase
-from app import app, db
-from app.models import AsciiArt
+from app import app, db, bcrypt
+from app.models import AsciiArt, Users 
 
 
 class BaseTestCase(TestCase):
@@ -13,6 +13,8 @@ class BaseTestCase(TestCase):
 
     def setUp(self):
         db.create_all()
+        user = Users(username='jeff',password=bcrypt.generate_password_hash('123456'))
+        db.session.add(user)
         one = AsciiArt(
             title="test title",
             art="test art"

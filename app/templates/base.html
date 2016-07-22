@@ -37,6 +37,14 @@
                 <li><a href="{{ url_for('ajax') }}">/trip planner/</a></li>
                 <li><a href="{{ url_for('pup_api') }}">/puppy api example/</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+            {% if current_user.is_active %}
+                <li><a href="{{ url_for('logout') }}">{{ current_user.username }}</a></li>
+                <li><a href="{{ url_for('logout') }}">logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">login</a></li>
+            {% endif %}
+            </ul>
         </div>
     </nav>
 <div class="container">

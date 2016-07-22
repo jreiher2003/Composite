@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}trip planner{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h2>Login</h2>
+        <div class="col-md-12">
+            <form method="post" action="">
+                {{ form.csrf_token }}
+                {{ form.username }}
+                {{ form.password }}
+                {{ form.remember_me }}
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

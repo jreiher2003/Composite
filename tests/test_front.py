@@ -2,24 +2,34 @@ import unittest
 from base import BaseTestCase
 from app import db
 from app.models import AsciiArt
+from flask_login import current_user
 
 class TestFrontPage(BaseTestCase):
 
     def test_front(self):
-        response = self.client.get("/",content_type="html/text")
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b"/ascii/", response.data)
-        self.assertIn(b"test title", response.data)
+        with self.client:
+            self.client.get("/login", follow_redirects=True)
+            response = self.client.post("/login", data=dict(username='jeff', password='123456'), follow_redirects=True)
+            response1 = self.client.get("/ascii",content_type="html/text")
+            self.assertEqual(response1.status_code, 200)
+            self.assertIn(b"/ascii/", response1.data)
+            self.assertIn(b"test title", response1.data)
 
     def test_art_add_new_success(self):
-        response = self.client.post("/", data=dict(title="title", art="art"), follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b"You just posted some <strong>ascii</strong> artwork!", response.data)
+        with self.client:
+            self.client.get("/login", follow_redirects=True)
+            response = self.client.post("/login", data=dict(username='jeff', password='123456'), follow_redirects=True)
+            response1 = self.client.post("/ascii", data=dict(title="title", art="art"), follow_redirects=True)
+            self.assertEqual(response1.status_code, 200)
+            self.assertIn(b"You just posted some <strong>ascii</strong> artwork!", response1.data)
 
     def test_art_error(self):
-        response = self.client.post("/", data=dict(title="",art=""), follow_redirects=True)
-        self.assertIn(b"Hey, you need a title.",response.data)
-        self.assertIn(b"Hey buddy, you need to paste in some ascii artwork.",response.data)
+        with self.client:
+            self.client.get("/login", follow_redirects=True)
+            response = self.client.post("/login", data=dict(username='jeff', password='123456'), follow_redirects=True)
+            response1 = self.client.post("/ascii", data=dict(title="",art=""), follow_redirects=True)
+            self.assertIn(b"Hey, you need a title.",response1.data)
+            self.assertIn(b"Hey buddy, you need to paste in some ascii artwork.",response1.data)
 
     def test_art_delete_status(self):
         response = self.client.get("/1/delete", content_type="html/text")
