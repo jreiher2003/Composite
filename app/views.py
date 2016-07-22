@@ -104,9 +104,8 @@ def hello():
 @app.route("/<int:art_id>/edit", methods=["GET","POST"])
 @login_required
 def edit_art(art_id):
-    # all_art = AsciiArt.query.order_by(AsciiArt.id.desc()).all()
-    # all_art = list(all_art)
     all_art = top_arts()
+    all_users = top_users()
     lat = [a.lat for a in all_art]
     lon = [b.lon for b in all_art]
     gps = zip(lat,lon)
@@ -127,7 +126,8 @@ def edit_art(art_id):
         error=error, 
         edit_art=edit_art, 
         form=form, 
-        all_art=all_art, 
+        all_art=all_art,
+        all_users=all_users, 
         img_url=img_url)
 
 
