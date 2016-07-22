@@ -15,13 +15,16 @@ function loadData() {
     var cityStr = $("#city").val()
     var stateStr = $("#state").val()
     var address = streetStr + ", " + cityStr + ", " + stateStr;
-    $body.remove('#yo');
+    
+    if($("img").length <= 0) {
+        $greeting.text("Here is some information about " + address + ".");
+        var streetviewUrl = "https://maps.googleapis.com/maps/api/streetview?size=400x200&location=" + address + "&key=AIzaSyDOnmHKt4bMXj-QL8pKeHd4yCyTL8-IzUc";
+        $body.append("<img class='thumbnail center-block' src='"+ streetviewUrl + "'>");
+    } else {
+        console.log("do nothing")
+    }
 
-    $greeting.text("Here is some information about " + address + ".");
-    // $body.remove("<img>");
-    var streetviewUrl = "https://maps.googleapis.com/maps/api/streetview?size=400x200&location=" + address + "&key=AIzaSyDOnmHKt4bMXj-QL8pKeHd4yCyTL8-IzUc";
-    $body.append("<img class='thumbnail center-block' id='yo' src='"+ streetviewUrl + "'>");
-// https://api.nytimes.com/svc/search/v2/articlesearch.json?q=tampa&sort=newest&api-key=b2f92fb98088b256316d8584e1aaca61:13:70248560
+    
     var API = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q="
     var KEY = "&sort=newest&api-key=b2f92fb98088b256316d8584e1aaca61:13:70248560"
     var URL = API + cityStr + KEY
