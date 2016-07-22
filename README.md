@@ -21,12 +21,14 @@ _______
 
 #### put environ envs like this
 ```
+mkvirtualenv venv
+
 # sudo nano $VIRTUAL_ENV/bin/postactivate
 # ex. ->-> export APP_SETTINGS="config.DevelopmentConfig"
   ex. ->-> export SECRET_KEY="add a secret key"
   ex. ->-> export DATABASE_URL="postgres://vagrant:vagrant@localhost:5432/ascii"
 ```
-`workon composite`  
+`workon venv`  
 `cd /vagrant`  
 `python db_create.py`  
 `python manage.py runserver`  
