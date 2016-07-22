@@ -91,6 +91,7 @@ def hello():
         db.session.add(one)
         db.session.commit()
         top_arts(True)
+        top_users(True)
         flash("You just posted some <strong>ascii</strong> artwork!", "success")
         return redirect(url_for("hello"))
     return render_template("front.html", 
@@ -120,6 +121,7 @@ def edit_art(art_id):
         db.session.add(edit_art)
         db.session.commit()
         top_arts(True)
+        top_users(True)
         flash("Successful Edit of <strong>%s</strong>" % edit_art.title, "info")
         return redirect(url_for("hello"))
     return render_template("edit.html", 
@@ -140,6 +142,7 @@ def delete_art(art_id):
         db.session.delete(delete_artwork)
         db.session.commit()
         top_arts(True)
+        top_users(True)
         flash("Just deleted <u>%s</u>" % delete_artwork.title, "danger")
         return redirect(url_for("hello"))
     return render_template("delete.html", 
