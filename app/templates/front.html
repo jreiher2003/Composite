@@ -54,7 +54,11 @@
         <p class="text-capitalize h3">{{ art.title }}</p>
         <p class="text-muted">{{ art.format_date }}</p>
         <p><strong>Lat:</strong>&nbsp;{{ art.lat }}&nbsp;&nbsp;<strong>Lon:</strong>&nbsp;{{ art.lon }}</p>
-        <p><strong>Posted by: </strong>{{ art.user_id }}</p>
+        {% for user in all_users %}
+            {% if user.id == art.user_id %}
+                <p><strong>Posted by: </strong>{{ user.username }}</p>
+            {% endif %}
+        {% endfor %}
         <hr>
         <div class="justart">
         <pre>{{ art.art }}</pre>

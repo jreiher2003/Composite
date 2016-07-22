@@ -17,6 +17,12 @@ nav, footer {
 }
 a, pre, nav a, h2, u {
     color: #C83803;
+    -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  /* ...and now for the proper property */
+  transition:.5s;
 }
 a:hover, nav a:hover {
     color: #0B162A;
@@ -52,12 +58,29 @@ footer p {
   background-color: #C83803;
 }
 .showart {
-  border: 1px solid #0B162A;;
+  border: 1px solid #0B162A;
 }
 .justart {
   overflow-y: scroll;
   min-height: 400px;
   max-height: 400px;
   background-color: white;
+}
+.signup-button {
+  background-color: #C83803;
+  color: #fff;
+  border: 1px solid #0B162A;
+  font-size: 20px;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  /* ...and now for the proper property */
+  transition:.5s;
+}
+.signup-button:hover {
+  background-color: #0B162A;
+  border: 1px solid #C83803;
+  color: #fff;
 
 }

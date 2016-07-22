@@ -3,15 +3,28 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <h2>Login</h2>
-        <div class="col-md-12">
+        <div class="col-md-6 col-md-offset-3">
+            <h2 class="text-center">AsciiChan-Tripplannr Login</h2>
             <form method="post" action="">
                 {{ form.csrf_token }}
-                {{ form.username }}
-                {{ form.password }}
-                {{ form.remember_me }}
-                <input type="submit">
+                <div class="form-group">
+                    {{ form.username.label(class="sr-only") }}
+                    {{ form.username(class="form-control input-lg", placeholder="username or email address...") }}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label(class="sr-only") }}
+                    {{ form.password(class="form-control input-lg", placeholder="choose a password...") }}
+                </div>
+                <div class="form-group">
+                    {{ form.remember_me }} {{ form.remember_me.label }}
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="form-control input-lg signup-button">
+                </div>
             </form>
+            <br><br>
+            <p>don't have an account yet?  <a href="{{ url_for('signup') }}">&nbsp;register here</p>
+            <hr>
         </div>
     </div>
 </div>

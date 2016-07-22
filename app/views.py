@@ -102,6 +102,7 @@ def hello():
 
 
 @app.route("/<int:art_id>/edit", methods=["GET","POST"])
+@login_required
 def edit_art(art_id):
     # all_art = AsciiArt.query.order_by(AsciiArt.id.desc()).all()
     # all_art = list(all_art)
@@ -131,6 +132,7 @@ def edit_art(art_id):
 
 
 @app.route("/<int:art_id>/delete", methods=["GET","POST"])
+@login_required
 def delete_art(art_id):
     delete_artwork = AsciiArt.query.filter_by(id=art_id).one()
     form = AsciiForm()
@@ -145,11 +147,13 @@ def delete_art(art_id):
 
 
 @app.route("/ajax", methods=["GET","POST"])
+@login_required
 def ajax():    
     return render_template("ajax.html")
 
 
 @app.route("/puppy-api-example", methods=["GET", "POST"])
+@login_required
 def pup_api():
     url = "http://adopt-puppy.herokuapp.com/shelters/.json"
     response = requests.get(url)
@@ -198,4 +202,4 @@ def signup():
 def logout():
     logout_user()
     flash("You just successfully logged out", "danger")
-    return redirect(url_for('hello'))
+    return redirect(url_for('signup'))
